@@ -8,12 +8,19 @@ export default function SideProfile() {
         <img src={location.state.avatar_url} className="profile-img" />
         
         <div className="profile">
-        <h2>{location.state.name}</h2>
-        <h3>{location.state.login}</h3>
+            <h2>{location.state.name}</h2>
+            <h3>{location.state.login}</h3>
         </div>
 
+        {location.state.bio && <p>{location.state.bio}</p>}
+        
         <p>{location.state.followers} followers · {location.state.following} following</p>
-        {location.state.email !== null && <p>{location.state.email}</p>}
+
+        <div>
+            {location.state.location && <p>{location.state.location}</p>}
+            {location.state.email && <p>{location.state.email}</p>}
+            {location.state.twitter_username && <p>@{location.state.twitter_username}</p>}
+        </div>
     </div> 
   )
 }

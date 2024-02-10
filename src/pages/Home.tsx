@@ -103,16 +103,13 @@ function Home() {
         }
       });
 
-      setUser(response.data);
+      setUser(response.data);  
 
     } catch (error: unknown) {
+      alert("No user found with that username");
+
       if (error instanceof Error) {
-        console.log(error.name);
-        console.log(error.message);
         console.log(error.stack);
-      // } else {
-      //   // fix with TS
-      //   console.log(error.message);
       }
     }
   }
@@ -135,6 +132,8 @@ function Home() {
         name: user.name,
         location: user.location,
         email: user.email,
+        bio: user.bio,
+        twitter_username: user.twitter_username,
         followers: user.followers,
         following: user.following,
       }
@@ -162,7 +161,7 @@ function Home() {
       </form>
 
       {/* handle when no user found */}
-      <div>{user.login !== "" ? <p><a onClick={navToProfile}>{user.id}, {user.name}</a></p> : "no"}</div>
+      <div>{user.login !== "" && <p><a onClick={navToProfile}>{user.name}</a></p>}</div>
     </div>
   );
 }
