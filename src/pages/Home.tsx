@@ -1,43 +1,106 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Octokit } from "@octokit/rest";
 // import { createTokenAuth } from "@octokit/auth-token";
 
 const GH_KEY: string = import.meta.env.VITE_GH_TOKEN;
 
-function App() {
+function Home() {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState<User>({
+  const [user, setUser] = useState<UserData>({
+    login: "",
+    id: 0,
+    node_id: "", // needed?
+    avatar_url: "",
+    gravatar_id: null, // needed?
     url: "",
-    data: {
-        login: "",
-        id: 0
-    }
+    html_url: "",
+    followers_url: "", // needed?
+    following_url: "", // needed?
+    gists_url: "", // needed?
+    starred_url: "", // needed?
+    subscriptions_url: "", // needed?
+    organizations_url: "", // needed?
+    repos_url: "",
+    events_url: "", // needed?
+    received_events_url: "", // needed?
+    type: "", // needed?
+    site_admin: false, // needed?
+    name: "",
+    company: null, // needed?
+    blog: null, // needed?
+    location: "",
+    email: null, // needed?
+    hireable: null, // needed?
+    bio: null, // needed?
+    twitter_username: null, // needed?
+    public_repos: 0, // needed?
+    public_gists: 0, // needed?
+    followers: 0,
+    following: 0,
+    created_at: "", // needed?
+    updated_at: "", // needed?
+    private_gists: 0, // needed?
+    total_private_repos: 0, // needed?
+    owned_private_repos: 0, // needed?
+    disk_usage: 0, // needed?
+    collaborators: 0, // needed?
+    two_factor_authentication: false, // needed?
   })
 
-  interface User {
-    url: string,
-    data: Data,
-  }
-
-  interface Data {
+  interface UserData {
     login: string,
     id: number,
+    node_id: string, // needed?
+    avatar_url: string,
+    gravatar_id: string | null, // needed?
+    url: string,
+    html_url: string,
+    followers_url: string, // needed?
+    following_url: string, // needed?
+    gists_url: string, // needed?
+    starred_url: string, // needed?
+    subscriptions_url: string, // needed?
+    organizations_url: string, // needed?
+    repos_url: string,
+    events_url: string, // needed?
+    received_events_url: string, // needed?
+    type: string, // needed?
+    site_admin: boolean, // needed?
+    name: string | null,
+    company: string | null, // needed?
+    blog: string | null, // needed?
+    location: string | null,
+    email: string | null, // needed?
+    hireable: boolean | null, // needed?
+    bio: string | null, // needed?
+    twitter_username?: string | null | undefined, // needed?
+    public_repos: number, // needed?
+    public_gists: number, // needed?
+    followers: number,
+    following: number,
+    created_at: string, // needed?
+    updated_at: string, // needed?
+    private_gists?: number | undefined, // needed?
+    total_private_repos?: number | undefined, // needed?
+    owned_private_repos?: number | undefined, // needed?
+    disk_usage?: number | undefined, // needed?
+    collaborators?: number, // needed?
+    two_factor_authentication?: boolean, // needed?
   }
 
   const octokit = new Octokit({
     auth: GH_KEY
   });
 
-  const getUsers = async () => {
+  const getUser = async () => {
     try {
-      const response = await octokit.request("GET /users/{username}", {
-        username: `${username}`,
+      const response = await octokit.request(`GET /users/${username}`, {
         headers: {
           'X-GitHub-Api-Version': '2022-11-28'
         }
       });
 
-      setUser(response);
+      setUser(response.data);
 
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -54,8 +117,14 @@ function App() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(username);
-    getUsers();
+    await getUser();
+    setUsername("");
   }
+
+  // debugging purposes:
+  useEffect(() => {
+    console.log(user)
+  }, [user])
 
   return (
     <div className="App">
@@ -73,10 +142,10 @@ function App() {
       </form>
 
       {/* handle when no user found */}
-      <div>{user.data.login !== "" ? <p><a href={`/${user.data.login}`}>{user.data.id}</a></p> : "no"}</div>
+      <div>{user.login !== "" ? <p><a href={`/${user.login}`}>{user.id}, {user.name}</a></p> : "no"}</div>
     </div>
   );
 }
 
-export default App;
+export default Home;
 
