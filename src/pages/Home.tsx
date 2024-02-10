@@ -1,10 +1,13 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, MouseEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Octokit } from "@octokit/rest";
 // import { createTokenAuth } from "@octokit/auth-token";
 
 const GH_KEY: string = import.meta.env.VITE_GH_TOKEN;
 
 function Home() {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [user, setUser] = useState<UserData>({
     login: "",
@@ -121,6 +124,22 @@ function Home() {
     setUsername("");
   }
 
+  const navToProfile = async (e: MouseEvent) => {
+    e.preventDefault();
+    navigate(`/${user.login}`, {
+      state: {
+        login: user.login,
+        id: user.id,
+        avatar_url: user.avatar_url,
+        repos_url: user.repos_url,
+        name: user.name,
+        location: user.location,
+        followers: user.followers,
+        following: user.following,
+      }
+    });
+  }
+
   // debugging purposes:
   useEffect(() => {
     console.log(user)
@@ -142,7 +161,7 @@ function Home() {
       </form>
 
       {/* handle when no user found */}
-      <div>{user.login !== "" ? <p><a href={`/${user.login}`}>{user.id}, {user.name}</a></p> : "no"}</div>
+      <div>{user.login !== "" ? <p><a onClick={navToProfile}>{user.id}, {user.name}</a></p> : "no"}</div>
     </div>
   );
 }
