@@ -134,6 +134,7 @@ function Home() {
         repos_url: user.repos_url,
         name: user.name,
         location: user.location,
+        email: user.email,
         followers: user.followers,
         following: user.following,
       }
@@ -155,8 +156,8 @@ function Home() {
         <label>Search a user</label>
         <input 
           onChange={(e) => setUsername(e.target.value)} 
-          value={username}>
-        </input>
+          value={username}
+        />
         <button type="submit">Search</button>
       </form>
 
