@@ -1,19 +1,22 @@
-// import moment from "moment";
-// // import { useLocation } from "react-router-dom";
+import { RepoData } from "../types/Types";
+import moment from "moment";
 
-// export default function Repository() {
-//     // const location = useLocation();
+interface RepoProps {
+    repoInfo: RepoData;
+}
 
-//     return (
-//         <div className="repo">
-//             <h1>{repo.name}</h1>
-//             <p>{repo.description}</p>
+export default function Repository({ repoInfo }: RepoProps) {
 
-//             <div>
-//                 <p>{repo.language}</p>
+    return (
+        <div className="repo">
+            <h1>{repoInfo.name}</h1>
+            <p>{repoInfo.description}</p>
 
-//                 <p>Updated {moment(repo.updated_at).fromNow()}</p> {/* not always in this format */}
-//             </div>
-//         </div>
-//     )
-// }
+            <div>
+                <p>{repoInfo.language}</p>
+
+                <p>Updated {moment(repoInfo.updated_at).fromNow()}</p> {/* not always in this format */}
+            </div>
+        </div>
+    )
+}
