@@ -9,12 +9,18 @@ export default function Repository({ repoInfo }: RepoProps) {
 
     return (
         <div className="repo">
-            <h1>{repoInfo.name}</h1>
-            <p>{repoInfo.description}</p>
+            <div className="repo-main">
+                <h1>{repoInfo.name}</h1>
+                <p>{repoInfo.description}</p>
+            </div>
 
-            <div>
-                <p>{repoInfo.language}</p>
-
+            <div className="repo-extra">
+                {repoInfo.language && 
+                <>
+                    <img />
+                    <p>{repoInfo.language}</p>
+                </>
+                }
                 <p>Updated {moment(repoInfo.updated_at).fromNow()}</p> {/* not always in this format */}
             </div>
         </div>

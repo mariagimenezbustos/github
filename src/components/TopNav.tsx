@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 
 export default function TopNav() {
     return (
-        <div className="topnav-file">
+        <div id="topnav-file">
             <nav>
-                <Link to="/">Home</Link>
+                <Link to="/">
+                    <img src="/favicon.ico" />
+                    Home
+                </Link>
             </nav>
 
             <nav>

@@ -14,7 +14,7 @@ export default function SideProfile() {
 
         {location.state.bio && <p>{location.state.bio}</p>}
         
-        <p>{location.state.followers} followers · {location.state.following} following</p>
+        <p><b>{location.state.followers}</b> followers · <b>{location.state.following}</b> following</p>
 
         <div>
             {location.state.location && <p>{location.state.location}</p>}
