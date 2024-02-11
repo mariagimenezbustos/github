@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Octokit } from "@octokit/rest";
 import moment from "moment";
@@ -9,8 +9,11 @@ const GH_KEY: string = import.meta.env.VITE_GH_TOKEN;
 
 export default function Profile() {
   const location = useLocation();
-  const [ search, setSearch ] = useState("");
-  const [ repos, setRepos ] = useState<RepoData[]>([])
+  const [ search, setSearch ] = useState<string>("");
+  const [ repos, setRepos ] = useState<RepoData[]>([]);
+  // const [ language, setLanguage ] = useState<string>("");
+  const [ allLanguages, setAllLanguages ] = useState<string[]>([]);
+  const [ reposByLang, setReposByLang ] = useState<RepoData[]>([]);
 
   interface RepoData {
     id: number,
@@ -116,13 +119,10 @@ export default function Profile() {
       setRepos(response.data);
     
     } catch (error: unknown) {
+      alert("No repositories found for this user");
+
       if (error instanceof Error) {
-        console.log(error.name);
-        console.log(error.message);
         console.log(error.stack);
-      // } else {
-      //   // fix with TS
-      //   console.log(error.message);
       }
     }
   }
@@ -133,15 +133,50 @@ export default function Profile() {
     setSearch("");
   }
 
+  const handleLanguageChange = async (e: ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    console.log(value);
+
+    if (value === "All") {
+      setReposByLang([]);
+    } else {
+      const filteredByLang = repos.filter(repo => repo.language === value);
+      setReposByLang(filteredByLang);
+    }
+  }
+
+  const getLanguages = () => {
+    const langArr: Array<string> = [];
+
+    for (let i = 0; i < repos.length; i++) {
+      let currLang = repos[i].language;
+
+      if (!langArr.includes(currLang) && currLang !== null || undefined) {
+        langArr.push(currLang)
+      }
+    }
+
+    setAllLanguages(langArr);
+  }
+
   useEffect(() => {
-    getRepos();
-    console.log(repos)
-  }, [location.state.login])
+    async function getAllData() {
+      await getRepos();
+      if (repos.length > 0) getLanguages();
+    }
+
+    getAllData();
+  }, [repos.length]);
+
+  // useEffect(() => {
+  //   const filteredByLang = repos.filter(repo => repo.language === language);
+  //   setReposByLang(filteredByLang);
+  // }, [language])
 
   return (
-    <div>
+    <div className="profile-file">
       <TopNav />
-      
+
       <div className="grid">
         <SideProfile />
 
@@ -153,11 +188,37 @@ export default function Profile() {
               value={search}
             />
             <button>Type</button>
-            <button>Language</button>
+            <label>Language
+              <select
+                // value={language} // not working
+                onChange={(e) => handleLanguageChange(e)}
+              >
+                <option key="all" value="All">All</option>
+                {allLanguages.map((lang) => (
+                  <option key={lang} value={lang}>{lang}</option>
+                ))}
+              </select>
+            </label>
           </form>
 
-          <div>
-            {repos && repos.map((repo) => (
+          <div className="all-repos">
+            {repos && reposByLang.length === 0 && repos.map((repo) => (
+              <div key={repo.id} className="repo">
+                <h1>{repo.name}</h1>
+                {/* <p>{repo.private ? "Private" : "Public"}</p> */} {/* not on other profiles */}
+                <p>{repo.description}</p>
+
+                <div>
+                  <p>{repo.language}</p>
+
+                  <p>Updated {moment(repo.updated_at).fromNow()}</p> {/* not always in this format */}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="lang-repos">
+            {reposByLang && reposByLang.map((repo) => (
               <div key={repo.id} className="repo">
                 <h1>{repo.name}</h1>
                 {/* <p>{repo.private ? "Private" : "Public"}</p> */} {/* not on other profiles */}

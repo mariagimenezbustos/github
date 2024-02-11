@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function TopNav() {
     return (
-        <div>
+        <div className="topnav-file">
             <nav>
                 <Link to="/">Home</Link>
             </nav>

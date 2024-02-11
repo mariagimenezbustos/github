@@ -8,7 +8,7 @@ const GH_KEY: string = import.meta.env.VITE_GH_TOKEN;
 function Home() {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState<string>("");
   const [user, setUser] = useState<UserData>({
     login: "",
     id: 0,
@@ -146,22 +146,22 @@ function Home() {
   }, [user])
 
   return (
-    <div className="App">
+    <div className="home-file">
       <header className="App-header">
         <h1>Welcome to GitHub</h1>
       </header>
 
       <form onSubmit={handleSubmit}>
-        <label>Search a user</label>
         <input 
           onChange={(e) => setUsername(e.target.value)} 
           value={username}
+          placeholder='Search a user'
         />
         <button type="submit">Search</button>
       </form>
 
       {/* handle when no user found */}
-      <div>{user.login !== "" && <p><a onClick={navToProfile}>{user.name}</a></p>}</div>
+      <div>{user.login !== "" && <p className='listed-user'><a onClick={navToProfile}>{user.name && user.name + ", "} {user.login}</a></p>}</div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ export default function SideProfile() {
     const location = useLocation();
 
   return (
-    <div className="side">
+    <div className="sideprofile-file">
         <img src={location.state.avatar_url} className="profile-img" />
         
         <div className="profile">
