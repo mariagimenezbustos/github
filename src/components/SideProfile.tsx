@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import { OcticonProps } from "@primer/octicons-react";
 
 export default function SideProfile() {
     const location = useLocation();

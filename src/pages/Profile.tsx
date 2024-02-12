@@ -1,7 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Octokit } from "@octokit/rest";
-import { RepoData, Query } from "../types/Types";
+import { RepoData } from "../types/Types";
+// import { Query } from "../types/Types";
 import SideProfile from "../components/SideProfile";
 import TopNav from "../components/TopNav";
 import Repository from "../components/Repository";
