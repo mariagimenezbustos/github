@@ -5,13 +5,14 @@ import { RepoData, Query } from "../types/Types";
 import SideProfile from "../components/SideProfile";
 import TopNav from "../components/TopNav";
 import Repository from "../components/Repository";
+import SearchComment from "../components/SearchComment";
 
 const GH_KEY: string = import.meta.env.VITE_GH_TOKEN;
 
 export default function Profile() {
   const location = useLocation();
   const [ search, setSearch ] = useState<string>("");
-  const [ language, setLanguage ] = useState<string>("");
+  const [ language, setLanguage ] = useState<string>("All");
   const [ repos, setRepos ] = useState<RepoData[]>([]);
   const [ allLanguages, setAllLanguages ] = useState<string[]>([]);
   const [ filteredRepos, setFilteredRepos ] = useState<RepoData[]>([]);
@@ -48,8 +49,6 @@ export default function Profile() {
       setRepos(response.data);
     
     } catch (error: unknown) {
-      alert("No repositories found for this user");
-
       if (error instanceof Error) {
         console.log(error.stack);
       }
@@ -78,7 +77,7 @@ export default function Profile() {
         for (let i = 0; i < repos.length; i++) {
           if (repos[i].name.toLowerCase().includes(search)) filtered.push(repos[i]);
         }
-      } else {
+      } else if (search === "") {
         filtered = repos;
       }
     } else if (filter.langFilter !== "All") {
@@ -96,11 +95,6 @@ export default function Profile() {
     }
 
     setFilteredRepos(filtered);
-
-    if (filtered.length === 0) {
-      
-      alert("No repositories found with these filters");
-    }
   }
 
   const setNameSearch = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -149,14 +143,15 @@ export default function Profile() {
           </label>
 
           <div className="all-repos">
-            {repos && 
-              filteredRepos.length === 0 &&
-              repos.map((repo) => (
+            {repos.length && language === "All" && search === "" && filteredRepos.length === 0 
+            && repos.map((repo) => (
               <Repository key={repo.id} repoInfo={repo} />
             ))}
           </div>
 
-          <div>
+          <div className="filtered-repos">
+            <SearchComment commentInfo={{filteredRepos, language, search}} />
+
             {filteredRepos.length > 0 &&
               filteredRepos.map((repo) => (
                 <Repository key={repo.id} repoInfo={repo} />
@@ -164,10 +159,8 @@ export default function Profile() {
           </div>
 
           <div>
-            {filteredRepos.length > 0 &&
-              filteredRepos.map((repo) => (
-                <Repository key={repo.id} repoInfo={repo} />
-              ))}
+            {(repos.length === 0 || (filteredRepos.length === 0 && search !== "")) &&
+              <p>No repositories found for this user or with these filters</p>}
           </div>
         </div>
       </div>

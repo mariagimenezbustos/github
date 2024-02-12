@@ -1,5 +1,5 @@
 /* all files */
-*{
+* {
   margin: 0;
   box-sizing: border-box;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
@@ -39,20 +39,35 @@ input {
   margin: 0 30px auto 15px;
 }
 
+
+.lang-btn {
+  position: relative;
+
+}
+
+.lang-block {
+  display: block;
+}
+
+.lang-list {
+  visibility: hidden;
+  display: block;
+}
+
 /* Repository.tsx */
-.repo {
+#repository-file {
   padding-top: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid #656D76;
 }
 
-.repo h1 {
+#repository-file h1 {
   color: #0969DA;
   font-weight: var(--base-text-weight-semibold, 600);
   font-size: 26px;
 }
 
-.repo p {
+#repository-file p {
   color: #656D76;
 }
 
@@ -70,6 +85,27 @@ input {
 .repo-extra p {
   margin-right: 25px;
   font-size: 15px;
+}
+
+#circle {
+  width: 15px;
+  height: 15px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  margin-right: 5px;
+}
+
+.first-line {
+  display: flex;
+}
+
+.privacy {
+  margin-left: 20px;
+  padding: 2px 15px;
+  border: 1px solid #656D76;
+  border-radius: 2rem;
+  font-weight: 100;
 }
 
 /* SideProfile.tsx */
@@ -99,6 +135,14 @@ input {
   font-style: normal;
   line-height: 24px;
   font-weight: var(--base-text-weight-light, 300);
+}
+
+.octi-line {
+  display: flex;
+}
+
+.octi-line p {
+  margin-left: 5px;
 }
 
 /* TopNav.tsx */

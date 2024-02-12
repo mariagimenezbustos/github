@@ -131,3 +131,9 @@ export interface Query {
   nameSearch?: string | null,
   langFilter?: string,
 }
+
+export interface CommentInfo {
+  filteredRepos: RepoData[],
+  language?: string | null,
+  search?: string | null,
+}

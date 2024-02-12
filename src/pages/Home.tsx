@@ -121,7 +121,13 @@ function Home() {
       </form>
 
       {/* handle when no user found */}
-      <div>{user.login !== "" && <p className='listed-user'><a onClick={navToProfile}>{user.name && user.name + ", "} {user.login}</a></p>}</div>
+      <div>
+        {user.login !== "" &&
+          <p className='listed-user'>
+            <a onClick={navToProfile}>{user.name && user.name + ", "} {user.login}</a>
+          </p>
+        }
+      </div>
     </div>
   );
 }
