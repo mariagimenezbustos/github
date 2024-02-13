@@ -35,6 +35,10 @@ export default function Profile() {
     filterEverything();
   }, [language]);
 
+  // useEffect(() => {
+  //   filterEverything();
+  // }, [search]);
+
   const getRepos = async () => {
     try {
       const octokit = new Octokit({
@@ -126,22 +130,25 @@ export default function Profile() {
         <SideProfile />
 
         <div className="main">
-          <input
-            placeholder="Find a repository..."
-            onChange={(e) => setNameSearch(e)}
-            type="search"
-          />
+          <div className="search-part">
+            <input
+              placeholder="Find a repository..."
+              onChange={(e) => setNameSearch(e)}
+              type="search"
+            />
 
-          <label>Language
-            <select
-              onChange={(e) => setLangFilter(e)}
-            >
-              <option key="all" value="All">All</option>
-              {allLanguages.map((lang) => (
-                <option key={lang} value={lang}>{lang}</option>
-              ))}
-            </select>
-          </label>
+            <div className="select-wrap">
+              <label>Language</label>
+              <select
+                onChange={(e) => setLangFilter(e)}
+              >
+                <option key="all" value="All">All</option>
+                {allLanguages.map((lang) => (
+                  <option key={lang} value={lang}>{lang}</option>
+                ))}
+              </select>
+            </div>
+          </div>
 
           <div className="all-repos">
             {repos.length && language === "All" && search === "" && filteredRepos.length === 0 

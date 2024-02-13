@@ -1,13 +1,83 @@
-/* all files */
+/* multiple files */
 * {
   margin: 0;
   box-sizing: border-box;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 }
 
+@media screen and (min-width: 1px) {
+  #home-file input {
+    width: 400px;
+    margin-right: 20px;
+  }
+  .listed-user {
+    width: 520px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  #home-file input {
+    width: 500px;
+    margin-right: 30px;
+  }
+  .listed-user {
+    width: 630px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  #home-file input {
+    width: 600px;
+    margin-right: 40px;
+  }
+  .listed-user {
+    width: 740px;
+  }
+}
+
+@media screen and (min-width: 1070px){
+  #home-file input {
+    width: 700px;
+    margin-right: 50px;
+  }
+  .listed-user {
+    width: 850px;
+  }
+}
+
+@media screen and (min-width: 1180px){
+  #home-file input {
+    width: 800px;
+    margin-right: 60px;
+  }
+  .listed-user {
+    width: 960px;
+  }
+}
+
+@media screen and (min-width: 1290px){
+  #home-file input {
+    width: 900px;
+    margin-right: 70px;
+  }
+  .listed-user {
+    width: 1070px;
+  }
+}
+
+@media screen and (min-width: 1400px){
+  #home-file input {
+    width: 1000px;
+    margin-right: 80px;
+  }
+  .listed-user {
+    width: 1180px;
+  }
+}
+
 input {
-  padding: 5px 12px;
-  font-size: 14px;
+  padding: 8px 15px;
+  font-size: 18px;
   line-height: 20px;
   vertical-align: middle;
   border: 1px solid #656D76;
@@ -15,34 +85,145 @@ input {
   width: 75%;
 }
 
-/* Home.tsx */
-.home-file {
-  margin: 20px;
+.github-nav img, .home-header img, .listed-user img {
+  height: 40px;
+  width: 40px;
+  float: left;
+  /* clear: both; */
+  margin-right: 15px;
 }
 
-.listed-user {
-  margin-top: 10px;
-}
-
-.listed-user :hover {
+.github-nav p, .home-header p {
+  display: block;
+  overflow: auto;
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 9px;
+  width: fit-content;
   cursor: pointer;
+}
+
+/* Home.tsx */
+#home-file header {
+  background-color: #F6F8FA;
+  border-bottom: 1px solid #656D76;
+  padding: 25px;
+  margin-bottom: 50px;
+}
+
+#home-file .home-header p {
+  padding-bottom: 10px;
+}
+
+#home-file .home-body {
+  text-align: center;
+}
+
+#home-file .home-body form {
+  width: fit-content;
+  text-align: center;
+  /* align-items: center; */
+  margin: auto;
+}
+
+#home-file .home-body button {
+  border: 1px solid #777;
+  border-radius: 6px;
+  padding: 8.5px 15px;
+  width: 100px;
+  font-size: 14px;
+  background-color: #F6F8FA;
+}
+
+#home-file .listed-user {
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  border: 1px solid #656D76;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+#home-file .listed-user img {
+  border-radius: 50%;
+  max-height: 50px;
+  max-width: 50px;
+  margin-right: 20px;
+}
+
+#home-file .listed-user p {
+  display: inline-block;
+  overflow: auto;
+  width: fit-content;
+  padding-top: 10px;
+}
+
+#home-file .listed-user span {
+  margin-right: 20px;
+}
+
+#home-file .listed-user span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#home-file .user-name {
+  color: #0969DA;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+#home-file .user-username {
+  color: #656D76;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+#home-file .user-info {
+  text-align: left;
 }
 
 /* Profile.tsx */
 .grid {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  row-gap: auto;
   margin-top: 30px;
+  width: 1500px;
+  margin: 50px auto;
 }
 
 .main {
   margin: 0 30px auto 15px;
 }
 
+.select-wrap {
+  border: 1px solid #777;
+  border-radius: 6px;
+  padding: 8px 8px 8px 15px;
+  width: 200px;
+  background-color: #F6F8FA;
+}
+
+.select-wrap label{
+  font-size: 15px;
+  color: #777;
+  padding: 5px;
+}
+
+.select-wrap select {
+  background-color: #F6F8FA;
+  border: 0px;
+  font-weight: bold;
+}
+
+.search-part {
+  display: flex;
+  justify-content: space-between;
+}
 
 .lang-btn {
   position: relative;
-
 }
 
 .lang-block {
@@ -87,6 +268,10 @@ input {
   font-size: 15px;
 }
 
+.repo-extra svg {
+  margin-right: 5px;
+}
+
 #circle {
   width: 15px;
   height: 15px;
@@ -113,11 +298,11 @@ input {
   margin: 0 15px auto 30px;
 }
 
-.profile{
+.profile {
   display: block;
 }
 
-.profile-img{
+.profile-img {
   border-radius: 50%;
   max-height: 320px;
   max-width: 320px;
@@ -142,17 +327,78 @@ input {
 }
 
 .octi-line p {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 /* TopNav.tsx */
 #topnav-file {
   background-color: #F6F8FA;
   border-bottom: 1px solid #656D76;
-  padding: 20px 20px;
+  padding: 20px 25px;
+  cursor: default;
 }
 
-#topnav-file img {
+.github-nav {
+  width: 50px;
+  display: inline;
+}
+
+/* .github-nav img {
   height: 40px;
   width: 40px;
+  float: left;
+  clear: both;
+  margin-right: 15px;
+}
+
+.github-nav p {
+  display: block;
+  overflow: auto;
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 9px;
+  width: fit-content;
+  cursor: pointer;
+} */
+
+.github-nav a:link, .github-nav a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.repos-nav {
+  display: flex;
+  position: static;
+  margin-top: 2.25rem;
+}
+
+.repos-nav a {
+  margin-right: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.repos-nav a:hover {
+  background-color: #e0e5e9;
+  border-radius: 6px;
+}
+
+.repos-nav a::after { /* not working as wanted */
+  background: orange;
+  border-radius: var(--borderRadius-medium, 0.375rem);
+  /* bottom: calc(50% - 25px); */
+  top: 131px; /* not from elements */
+  content: "";
+  height: 2px;
+  position: absolute;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 100%;
+  z-index: 1;
+}
+
+.repos-nav svg {
+  margin-right: 15px;
+  filter: invert(42%) sepia(18%) saturate(232%) hue-rotate(171deg) brightness(94%) contrast(90%);
 }

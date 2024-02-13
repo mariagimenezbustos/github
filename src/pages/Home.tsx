@@ -106,26 +106,43 @@ function Home() {
   }, [user])
 
   return (
-    <div className="home-file">
-      <header className="App-header">
-        <h1>Welcome to GitHub</h1>
+    <div id="home-file">
+      <header className="home-header">
+        <img src="/favicon.ico" />
+        <p>Welcome to GitHub</p>
       </header>
 
-      <form onSubmit={handleSubmit}>
-        <input 
-          onChange={(e) => setUsername(e.target.value)} 
-          value={username}
-          placeholder='Search a user'
-        />
-        <button type="submit">Search</button>
-      </form>
+      <div className='home-body'>
+        <form onSubmit={handleSubmit}>
+          <input 
+            onChange={(e) => setUsername(e.target.value)} 
+            value={username}
+            placeholder='Search a user'
+          />
+          <button type="submit">Search</button>
+        </form>
 
-      {/* handle when no user found */}
-      <div>
+        {/* handle when no user found */}
+
         {user.login !== "" &&
-          <p className='listed-user'>
-            <a onClick={navToProfile}>{user.name && user.name + ", "} {user.login}</a>
-          </p>
+          <div className='listed-user'>
+            <div>
+              <img src={user.avatar_url} />
+            </div>
+
+            <div className='user-info'>
+              <span className='user-name' onClick={navToProfile}>
+                {user.name && user.name}
+              </span>
+              
+              <span className='user-username' onClick={navToProfile}>
+                {user.login}
+              </span>
+              
+              <br />
+              {user.bio && <p>{user.bio}</p>}
+            </div>
+          </div>
         }
       </div>
     </div>
