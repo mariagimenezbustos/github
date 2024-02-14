@@ -1,8 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Octokit } from "@octokit/rest";
-import { RepoData } from "../types/Types";
-// import { Query } from "../types/Types";
+import { RepoData, Query } from "../types/Types";
 import SideProfile from "../components/SideProfile";
 import TopNav from "../components/TopNav";
 import Repository from "../components/Repository";
@@ -17,7 +16,7 @@ export default function Profile() {
   const [ repos, setRepos ] = useState<RepoData[]>([]);
   const [ allLanguages, setAllLanguages ] = useState<string[]>([]);
   const [ filteredRepos, setFilteredRepos ] = useState<RepoData[]>([]);
-  const [ filter, setFilter ] = useState({
+  const [ filter, setFilter ] = useState<Query>({
     nameSearch: "",
     langFilter: "All",
   });
