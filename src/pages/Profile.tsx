@@ -148,7 +148,7 @@ export default function Profile() {
             />
 
             <div className="select-wrap">
-              <label>Language</label>
+              <label>Language:</label>
               <select
                 onChange={(e) => setLangFilter(e)}
                 id="langSelect"
