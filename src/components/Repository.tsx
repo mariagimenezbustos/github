@@ -45,7 +45,7 @@ export default function Repository({ repoInfo }: RepoProps) {
                     <p>{repoInfo.forks_count}</p>
                 </>}
 
-                <p>Updated {moment(repoInfo.updated_at).fromNow()}</p> {/* not always in this format */}
+                <p>Updated {moment(repoInfo.updated_at).fromNow()}</p>
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import { FormEvent, MouseEvent, useEffect, useState } from 'react';
+import { FormEvent, MouseEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Octokit } from "@octokit/rest";
 import { UserData } from "../types/Types";
@@ -10,45 +10,20 @@ function Home() {
 
   const [username, setUsername] = useState<string>("");
   const [user, setUser] = useState<UserData>({
-    // update all of the following
     login: "",
     id: 0,
-    node_id: "", // needed?
     avatar_url: "",
-    gravatar_id: null, // needed?
-    url: "",
     html_url: "",
-    followers_url: "", // needed?
-    following_url: "", // needed?
-    gists_url: "", // needed?
-    starred_url: "", // needed?
-    subscriptions_url: "", // needed?
-    organizations_url: "", // needed?
     repos_url: "",
-    events_url: "", // needed?
-    received_events_url: "", // needed?
-    type: "", // needed?
-    site_admin: false, // needed?
     name: "",
-    company: null, // needed?
-    blog: null, // needed?
+    company: null,
     location: "",
-    email: null, // needed?
-    hireable: null, // needed?
-    bio: null, // needed?
-    twitter_username: null, // needed?
-    public_repos: 0, // needed?
-    public_gists: 0, // needed?
+    email: null,
+    bio: null,
+    twitter_username: null,
+    public_repos: 0,
     followers: 0,
     following: 0,
-    created_at: "", // needed?
-    updated_at: "", // needed?
-    private_gists: 0, // needed?
-    total_private_repos: 0, // needed?
-    owned_private_repos: 0, // needed?
-    disk_usage: 0, // needed?
-    collaborators: 0, // needed?
-    two_factor_authentication: false, // needed?
   })
 
   const octokit = new Octokit({
@@ -101,11 +76,6 @@ function Home() {
     });
   }
 
-  // debugging purposes:
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-
   return (
     <div id="home-file">
       <header className="home-header">
@@ -122,8 +92,6 @@ function Home() {
           />
           <button type="submit">Search</button>
         </form>
-
-        {/* handle when no user found */}
 
         {user.login !== "" &&
           <div className='listed-user'>

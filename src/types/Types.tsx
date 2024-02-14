@@ -89,42 +89,42 @@ export interface RepoData {
 export interface UserData {
   login: string,
   id: number,
-  node_id: string, // needed?
+  node_id?: string,
   avatar_url: string,
-  gravatar_id: string | null, // needed?
-  url: string,
+  gravatar_id?: string | null,
+  url?: string,
   html_url: string,
-  followers_url: string, // needed?
-  following_url: string, // needed?
-  gists_url: string, // needed?
-  starred_url: string, // needed?
-  subscriptions_url: string, // needed?
-  organizations_url: string, // needed?
+  followers_url?: string,
+  following_url?: string,
+  gists_url?: string,
+  starred_url?: string,
+  subscriptions_url?: string,
+  organizations_url?: string,
   repos_url: string,
-  events_url: string, // needed?
-  received_events_url: string, // needed?
-  type: string, // needed?
-  site_admin: boolean, // needed?
+  events_url?: string,
+  received_events_url?: string,
+  type?: string,
+  site_admin?: boolean,
   name: string | null,
-  company: string | null, // needed?
-  blog: string | null, // needed?
+  company?: string | null,
+  blog?: string | null,
   location: string | null,
-  email: string | null, // needed?
-  hireable: boolean | null, // needed?
-  bio: string | null, // needed?
-  twitter_username?: string | null | undefined, // needed?
-  public_repos: number, // needed?
-  public_gists: number, // needed?
+  email?: string | null,
+  hireable?: boolean | null,
+  bio: string | null,
+  twitter_username?: string | null | undefined,
+  public_repos: number,
+  public_gists?: number,
   followers: number,
   following: number,
-  created_at: string, // needed?
-  updated_at: string, // needed?
-  private_gists?: number | undefined, // needed?
-  total_private_repos?: number | undefined, // needed?
-  owned_private_repos?: number | undefined, // needed?
-  disk_usage?: number | undefined, // needed?
-  collaborators?: number, // needed?
-  two_factor_authentication?: boolean, // needed?
+  created_at?: string,
+  updated_at?: string,
+  private_gists?: number | undefined,
+  total_private_repos?: number | undefined,
+  owned_private_repos?: number | undefined,
+  disk_usage?: number | undefined,
+  collaborators?: number,
+  two_factor_authentication?: boolean,
 }
 
 export interface Query {
