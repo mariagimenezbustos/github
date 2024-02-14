@@ -141,6 +141,7 @@ function Home() {
               
               <br />
               {user.bio && <p>{user.bio}</p>}
+              {user.location && <p>{user.location}</p>}
             </div>
           </div>
         }

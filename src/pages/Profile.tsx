@@ -122,8 +122,22 @@ export default function Profile() {
     filterEverything();
   }
 
+  const clearFilters = () => {
+    setSearch("");
+    setLanguage("All");
+
+    const searchText = document.getElementById("searchInput") as HTMLInputElement;
+    searchText.value = ""
+
+    const langSelect = document.getElementById("langSelect") as HTMLSelectElement;
+    langSelect.value = "All";
+
+    setFilter({nameSearch: "", langFilter: "All"});
+    setFilteredRepos([]);
+  }
+
   return (
-    <div className="profile-file">
+    <div id="profile-file">
       <TopNav />
 
       <div className="grid">
@@ -135,12 +149,14 @@ export default function Profile() {
               placeholder="Find a repository..."
               onChange={(e) => setNameSearch(e)}
               type="search"
+              id="searchInput"
             />
 
             <div className="select-wrap">
               <label>Language</label>
               <select
                 onChange={(e) => setLangFilter(e)}
+                id="langSelect"
               >
                 <option key="all" value="All">All</option>
                 {allLanguages.map((lang) => (
@@ -158,7 +174,17 @@ export default function Profile() {
           </div>
 
           <div className="filtered-repos">
-            <SearchComment commentInfo={{filteredRepos, language, search}} />
+            <div>
+              <SearchComment commentInfo={{filteredRepos, language, search}} />
+              {(language !== "All" || search !== "") && 
+                <a className="clear-filter" onClick={clearFilters}>
+                  <svg className="octicon octicon-x" width={18} height={18}>
+                    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+                  </svg>
+                  Clear filter
+                </a>
+              }
+            </div>
 
             {filteredRepos.length > 0 &&
               filteredRepos.map((repo) => (

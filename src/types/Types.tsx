@@ -67,7 +67,7 @@ export interface RepoData {
   archived: boolean,
   disabled: boolean,
   open_issues_count: number,
-  license: null,
+  license?: string | null,
   allow_forking: boolean,
   is_template: boolean,
   web_commit_signoff_required: boolean,
