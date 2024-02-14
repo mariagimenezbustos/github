@@ -16,7 +16,8 @@ npm install react-router-dom
 npm install moment
 npm install @primer/octicons-react
 ```
-3. Run the development server:
+3. Add a file for your environment (`.env`) in the project's root, and add your GitHub token.
+4. Run the development server:
 ```
 npm run dev
 ```
