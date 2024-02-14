@@ -19,12 +19,12 @@ export default function SearchComment({ commentInfo }: CommentProps) {
         </div>
       }
       {commentInfo.filteredRepos.length === 1 && commentInfo.language !== "All" && commentInfo.search === "" &&
-        <div>
+        <div className="search-comment">
           <p><b>{commentInfo.filteredRepos.length}</b> result for repositories written in <b>{commentInfo.language}</b></p>
         </div>
       }
       {commentInfo.filteredRepos.length > 1 && commentInfo.language !== "All" && commentInfo.search === "" &&
-        <div>
+        <div className="search-comment">
           <p><b>{commentInfo.filteredRepos.length}</b> results for repositories written in <b>{commentInfo.language}</b></p>
         </div>
       }

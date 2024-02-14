@@ -90,6 +90,7 @@ function Home() {
         avatar_url: user.avatar_url,
         repos_url: user.repos_url,
         name: user.name,
+        company: user.company,
         location: user.location,
         email: user.email,
         bio: user.bio,

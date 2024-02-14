@@ -35,10 +35,6 @@ export default function Profile() {
     filterEverything();
   }, [language]);
 
-  // useEffect(() => {
-  //   filterEverything();
-  // }, [search]);
-
   const getRepos = async () => {
     try {
       const octokit = new Octokit({
@@ -144,7 +140,7 @@ export default function Profile() {
         <SideProfile />
 
         <div className="main">
-          <div className="search-part">
+          <div className="search-repo">
             <input
               placeholder="Find a repository..."
               onChange={(e) => setNameSearch(e)}
@@ -174,17 +170,17 @@ export default function Profile() {
           </div>
 
           <div className="filtered-repos">
-            <div>
-              <SearchComment commentInfo={{filteredRepos, language, search}} />
-              {(language !== "All" || search !== "") && 
+            {(language !== "All" || search !== "") && 
+              <div className="comment">
+                <SearchComment commentInfo={{filteredRepos, language, search}} />
                 <a className="clear-filter" onClick={clearFilters}>
                   <svg className="octicon octicon-x" width={18} height={18}>
                     <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
                   </svg>
-                  Clear filter
+                  <p>Clear filter</p>
                 </a>
-              }
-            </div>
+              </div>
+            }
 
             {filteredRepos.length > 0 &&
               filteredRepos.map((repo) => (
