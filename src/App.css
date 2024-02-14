@@ -7,11 +7,17 @@
 
 @media screen and (min-width: 1px) {
   #home-file input {
-    width: 400px;
-    margin-right: 20px;
+    width: 300px;
+    margin-right: 10px;
+  }
+  .home-body {
+    margin-top: 100px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .listed-user {
-    width: 520px;
+    width: 410px;
     grid-template-columns: 1fr 8fr;
   }
   .grid {
@@ -24,12 +30,41 @@
     margin-bottom: 20px;
   }
   .profile-img {
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
   }
   #sideprofile-file {
     display: grid;
     grid-template-columns: 1fr 2fr;
+  }
+}
+
+@media screen and (min-width: 540px) {
+  #home-file input {
+    width: 330px;
+  }
+  .listed-user {
+    width: 440px;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .profile-img {
+    height: 150px;
+    width: 150px;
+  }
+  .home-body {
+    display: inline-block;
+  }
+  .home-body {
+    margin-top: 100px;
+  }
+  #home-file input {
+    width: 390px;
+    margin-right: 20px;
+  }
+  .listed-user {
+    width: 500px;
   }
 }
 
@@ -78,8 +113,8 @@
     margin: 50px auto;
   }
   .profile-img {
-    height: 250px;
-    width: 250px;
+    height: 220px;
+    width: 220px;
   }
 }
 
@@ -101,8 +136,8 @@
     margin: 50px auto;
   }
   .profile-img {
-    height: 300px;
-    width: 300px;
+    height: 240px;
+    width: 240px;
   }
 }
 
@@ -124,8 +159,8 @@
     margin: 50px auto;
   }
   .profile-img {
-    height: 350px;
-    width: 350px;
+    height: 260px;
+    width: 260px;
   }
 }
 
@@ -209,8 +244,8 @@
 }
 
 input {
-  padding: 8px 15px;
-  font-size: 18px;
+  padding: 4px 10px;
+  font-size: 16px;
   line-height: 20px;
   vertical-align: middle;
   border: 1px solid #656D76;
@@ -262,6 +297,7 @@ input {
   width: fit-content;
   text-align: center;
   margin: auto;
+  display: inline-flex;
 }
 
 #home-file .home-body button {
@@ -321,6 +357,10 @@ input {
   text-align: left;
 }
 
+#home-file .user-info p {
+  margin-right: 10px;
+}
+
 /* Profile.tsx */
 .main {
   margin: 0 30px auto 15px;
@@ -329,7 +369,7 @@ input {
 .select-wrap {
   border: 1px solid #777;
   border-radius: 6px;
-  padding: 8px;
+  padding: 4px;
   width: fit-content;
   background-color: #F6F8FA;
   height: fit-content;
@@ -343,13 +383,13 @@ input {
 
 .select-wrap select {
   background-color: #F6F8FA;
-  border: 0px;
+  border: 0;
   font-weight: bold;
 }
 
 .search-repo {
   border-bottom: 1px solid #656D76;
-  padding-bottom: 25px;
+  padding-bottom: 20px;
 }
 
 .lang-btn {
@@ -383,15 +423,15 @@ input {
 
 /* Repository.tsx */
 #repository-file {
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #656D76;
 }
 
 #repository-file h1 {
   color: #0969DA;
   font-weight: var(--base-text-weight-semibold, 600);
-  font-size: 26px;
+  font-size: 22px;
   margin-bottom: 10px;
   text-decoration: none;
 }
@@ -406,14 +446,14 @@ input {
   border: 1px solid #656D76;
   border-radius: 2rem;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 12px;
   height: fit-content;
   margin-top: 5px;
 }
 
-.repo-main .description p {
+.description {
   padding-top: 5px;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .repo-extra {
@@ -424,7 +464,7 @@ input {
 
 .repo-extra p {
   margin-right: 25px;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .repo-extra svg {
@@ -458,7 +498,7 @@ input {
 }
 
 .profile h2 {
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.25;
   font-weight: var(--base-text-weight-semibold, 600);
   margin-bottom: 5px;
@@ -466,25 +506,25 @@ input {
 
 .profile h3{
   color: #656D76;
-  font-size: 24px;
+  font-size: 20px;
   font-style: normal;
   line-height: 24px;
   font-weight: var(--base-text-weight-light, 300);
 }
 
 .bio {
-  font-size: 20px;
+  font-size: 17px;
   margin: 15px 0;
 }
 
 .followers {
   margin: 20px 0;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 #sideprofile-file .rest div {
   margin-bottom: 5px;
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .octi-line {
@@ -499,7 +539,7 @@ input {
 #topnav-file {
   background-color: #F6F8FA;
   border-bottom: 1px solid #656D76;
-  padding: 20px 25px;
+  padding: 15px 25px;
   cursor: default;
 }
 
@@ -520,10 +560,10 @@ input {
 }
 
 .repos-nav a {
-  margin-right: 30px;
-  font-size: 18px;
+  margin-right: 20px;
+  font-size: 15px;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 5px;
 }
 
 .repos-nav a:hover {
@@ -539,8 +579,8 @@ input {
   content: "";
   display: block;
   border-bottom: 3px solid orange;
-  padding-bottom: 25px;
-  margin-bottom: -25px;
+  padding-bottom: 18px;
+  margin-bottom: -30px;
   margin-left: -10%;
   width: 120%;
   z-index: 1;
@@ -552,10 +592,10 @@ input {
 }
 
 .repo-amount {
-  margin-left: 10px;
+  margin-left: 8px;
   background-color: #e0e5e9;
   border-radius: 2rem;
-  padding: 3px 10px;
+  padding: 3px 9px;
   font-size: medium;
   font-weight: normal;
 }
